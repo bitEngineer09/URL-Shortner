@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic meta info and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to CSS file inside 'public' folder -->
+    <link rel="stylesheet" href="./style.css" />
+    <title>URL Shortner</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>URL Shortner</h1>
+
+            <!-- Form to submit a new URL -->
+            <form action="/" method="post" id="shorten-form">
+                <!-- URL input -->
+                <div class="label-container">
+                    <label for="url" class="label-content">Enter url:</label>
+                    <input type="url" name="url" id="url" />
+                </div>
+
+                <!-- Optional custom shortCode input -->
+                <div class="label-container">
+                    <label for="short-code" class="label-content">Custom Short URL(Optional):</label>
+                    <input type="text" name="shortCode" id="short-code" />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit">Short it !</button>
+            </form>
+
+            <h2>Shortened URLs</h2>
+
+            <!-- List of all shortened URLs -->
+            <ul id="shortened-urls">
+<!-- Object.entries() is a built-in JavaScript method that returns an array of a given object's key-value pairs. -->
+            <% Object.entries(links).map(([shortCode, url]) => { %>
+                <% const truncatedUrl = url.length >= 30 ? `${url.slice(0, 30)}...` : url %>
+                <li>
+                    <!-- Clicking this takes user to /shortCode -->
+                    <a href="/<%= shortCode %>" target="_blank"> 
+                        <%= hosts %> / <%= shortCode %>
+                    </a> - <%= url %>
+                </li>
+            <% }) %>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
